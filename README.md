@@ -1,39 +1,73 @@
- <!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Custom Validation Form
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+`custom_form_validation` is a customizable validation class for your Flutter project. It
+provides a validation. This class simplifies the process of creating and customizing validations in your Flutter
+applications.
+</br></br>
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
+## Platform Support
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+| **Android** |
+|:-----------:|
+|   &#9989;   |
+</br></br>
 
-## Features
+## Installation
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+To use `custom_form_validation` in your Flutter project, follow these steps:
 
-## Getting started
+1. Add the package to your `pubspec.yaml` file and run `flutter pub get`:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+    ```yaml
+        dependencies:
+          custom_form_validation : ^0.0.5  
+    ```
+
+2. Import the package in your Dart code:
+
+   ```dart
+   import 'package:custom_form_validation/custom_validation.dart';
+   ```
+
+</br></br>
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+To create a customized text input field with validation using `custom_text_form_field_plus`, you can
+use the `CustomTextFormField` widget and the provided `Validations` class for validation functions.
+Here's an example:
 
-```dart
-const like = 'sample';
-```
+   ```flutter
+       import 'package:custom_form_validation/custom_validation.dart';
+   ```
 
-## Additional information
+   ```
+      TextFormField(
+              validator: (value)=>Validator.validateMobile(value),
+            ),
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+       TextFormField(
+              validator: (value)=>Validator.validateName(value),
+            ),
+
+       TextFormField(
+              validator: (value)=>Validator.validateAddress(value),
+            ),
+   ```
+
+Check example folder for more.
+</br></br>
+
+## Customizations
+
+`custom_form_validation` provides various customization options through its class. You
+can customize attributes like add your validations in your local and many more to suit your
+application's requirements.
+</br>
+
+
+## Author
+
+- [Dhiraj Chandel](https://www.linkedin.com/in/dhirajsingh-chandel-7259b5172?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app)
+
+If you have any questions or need assistance, please feel free to contact the author.
