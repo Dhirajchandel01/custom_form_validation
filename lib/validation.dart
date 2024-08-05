@@ -1,7 +1,4 @@
-
-
 class Validator {
-
   // Mobile number validation (10-digit number)
   static String? validateMobile(String? value) {
     if (value == null || value.isEmpty) {
@@ -15,7 +12,6 @@ class Validator {
     }
     return null;
   }
-
 
   // Name validation (only alphabets and spaces, not empty)
   static String? validateName(String? value) {
@@ -179,7 +175,6 @@ class Validator {
     return null; // Return null if the date range is valid
   }
 
-
   static String? validateAmount(value) {
     if (value!.isEmpty) {
       return "Please enter amount";
@@ -191,7 +186,29 @@ class Validator {
     }
   }
 
+  String? validatePincode(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Pincode is required';
+    }
 
+    if (value.startsWith(' ')) {
+      return 'Pincode should not start with a space';
+    }
+
+    // Check for exactly 6 digits
+    if (!RegExp(r'^\d{6}$').hasMatch(value)) {
+      return 'Invalid Pincode';
+    }
+
+    return null;
+  }
+
+
+  static String? validateEmptyCheck(String? value,
+      {String errorMessage = 'Invalid Input'}) {
+    if (value!.isEmpty) return errorMessage;
+    return null;
+  }
 
 }
 
