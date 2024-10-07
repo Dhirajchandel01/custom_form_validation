@@ -3,23 +3,13 @@
 `custom_form_validation` is a customizable validation class for your Flutter project. It
 provides a validation. This class simplifies the process of creating and customizing validations in your Flutter
 applications.
-</br></br>          </br></br>
+</br></br>
 
 ## Platform Support
 
-| **Android** |    | **iOs** |   
-|:-----------:|    |:-----------:|
-|   &#9989;   |    |   &#9989;   |
-</br></br>         </br></br>
+Android	✔️  iOS	 ✔️   Web	✔️
 
 
-
-
-
-| **iOs** | 
-|:-------:| 
-| &#9989; | 
-</br></br>
 ## Installation
 
 To use `custom_form_validation` in your Flutter project, follow these steps:
@@ -28,7 +18,7 @@ To use `custom_form_validation` in your Flutter project, follow these steps:
 
     ```yaml
         dependencies:
-          custom_form_validation : ^0.0.5  
+          custom_form_validation: ^0.0.3+1 
     ```
 
 2. Import the package in your Dart code:
@@ -51,16 +41,13 @@ Here's an example:
 
    ```
       TextFormField(
-              validator: (value)=>Validator.validateMobile(value),
-            ),
-
+              validator: (value)=>Validator.validateMobile(value),),
+            
        TextFormField(
-              validator: (value)=>Validator.validateName(value),
-            ),
-
+              validator: (value)=>Validator.validateName(value),),
+            
        TextFormField(
-              validator: (value)=>Validator.validateAddress(value),
-            ),
+              validator: (value)=>Validator.validateAddress(value),),
    ```
 
 Check example folder for more.
@@ -72,7 +59,6 @@ Check example folder for more.
 can customize attributes like add your validations in your local and many more to suit your
 application's requirements.
 </br>
-
 
 ## Author
 
