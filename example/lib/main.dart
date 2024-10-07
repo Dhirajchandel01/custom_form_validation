@@ -15,12 +15,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -53,58 +55,98 @@ class _MyFormState extends State<MyForm> {
         key: _formKey,
         child: SizedBox(
           width: MediaQuery.of(context).size.width*0.70,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              TextFormField(
-                decoration: InputDecoration(
-                  labelText: "Enter Mobile Number"
+          child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget> [
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: "Enter Mobile Number"
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (value) => Validator.validateMobile(value),
                 ),
-                validator: (value) => Validator.validateMobile(value),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    labelText: "Enter Address"
+                const SizedBox(
+                  height: 40,
                 ),
-                validator: (value) => Validator.validateAddress(value),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    labelText: "Enter Pan Number"
+                TextFormField(
+                  decoration: const InputDecoration(
+                      labelText: "Enter Address"
+                  ),
+                  validator: (value) => Validator.validateAddress(value),
                 ),
-                validator: (value) => Validator.validatePan(value),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              TextFormField(
-                decoration: InputDecoration(
-                    labelText: "Enter Adhar Number"
+                const SizedBox(
+                  height: 40,
                 ),
-                validator: (value) => Validator.validateAadhar(value),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(content: Text("Validate")));
-                  } else {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(const SnackBar(content: Text("Error")));
-                  }
-                },
-                child: const Text("Validation"),
-              ),
-            ],
+                TextFormField(
+                  decoration: const InputDecoration(
+                      labelText: "Enter Pan Number"
+                  ),
+                  validator: (value) => Validator.validatePan(value),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                      labelText: "Enter Adhar Number"
+                  ),
+                  validator: (value) => Validator.validateAadhar(value),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: "Enter Email"
+                  ),
+                  validator: (value) => Validator.validateEmail(value),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: "Enter Credit Card"
+                  ),
+                  validator: (value) => Validator.validateCreditCard(value),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                      labelText: "Enter Url"
+                  ),
+                  validator: (value) => Validator.validateURL(value),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                // TextFormField(
+                //   decoration: const InputDecoration(
+                //       labelText: "Enter Url"
+                //   ),
+                //   validator: (value) => Validator.validateDateOfBirth(value),
+                // ),
+                // const SizedBox(
+                //   height: 40,
+                // ),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(const SnackBar(content: Text("Validate")));
+                    } else {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(const SnackBar(content: Text("Error")));
+                    }
+                  },
+                  child: const Text("Validation"),
+                ),
+              ],
+            ),
           ),
         ),
       ),

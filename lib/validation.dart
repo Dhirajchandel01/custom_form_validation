@@ -210,6 +210,94 @@ class Validator {
     return null;
   }
 
+  //Added By MS
+  //Email Validation
+  static String? validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Email is required';
+    }
+    if (value.startsWith(' ')) {
+      return 'Email should not start with a space';
+    }
+    if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$').hasMatch(value)) {
+      return 'Invalid email format';
+    }
+    return null;
+  }
+
+  // Credit card number validation
+  static String? validateCreditCard(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Credit card number is required';
+    }
+    if (value.startsWith(' ')) {
+      return 'Credit card number should not start with a space';
+    }
+    if (!RegExp(r'^\d{16}$').hasMatch(value)) {
+      return 'Invalid credit card number';
+    }
+
+    // Luhn algorithm for credit card validation
+    int sum = 0;
+    bool alternate = false;
+    for (int i = value.length - 1; i >= 0; i--) {
+      int n = int.parse(value[i]);
+      if (alternate) {
+        n *= 2;
+        if (n > 9) n -= 9;
+      }
+      sum += n;
+      alternate = !alternate;
+    }
+    if (sum % 10 != 0) {
+      return 'Invalid credit card number';
+    }
+
+    return null;
+  }
+
+  // URL validation
+  static String? validateURL(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'URL is required';
+    }
+    if (value.startsWith(' ')) {
+      return 'URL should not start with a space';
+    }
+    if (!RegExp(r'^(https?:\/\/)?([a-z0-9-]+(\.[a-z0-9-]+)+)(\/[^\s]*)?$').hasMatch(value)) {
+      return 'Invalid URL format';
+    }
+    return null;
+  }
+
+  // Date of birth validation
+  static String? validateDateOfBirth(DateTime? dob) {
+    if (dob == null) {
+      return 'Date of birth is required';
+    }
+    if (dob.isAfter(DateTime.now())) {
+      return 'Date of birth cannot be in the future';
+    }
+    return null;
+  }
+
+  // Strong password validation
+  static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    }
+    if (value.startsWith(' ')) {
+      return 'Password should not start with a space';
+    }
+    if (value.length < 8) {
+      return 'Password must be at least 8 characters';
+    }
+    if (!RegExp(r'(?=.*[0-9])(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}').hasMatch(value)) {
+      return 'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character';
+    }
+    return null;
+  }
+
 }
 
 extension PanCardValidator on String {
