@@ -56,7 +56,6 @@ class _MyFormState extends State<MyForm> {
         child: SizedBox(
           width: MediaQuery.of(context).size.width*0.70,
           child: SingleChildScrollView(
-            physics: const NeverScrollableScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget> [
@@ -124,15 +123,15 @@ class _MyFormState extends State<MyForm> {
                 const SizedBox(
                   height: 40,
                 ),
-                // TextFormField(
-                //   decoration: const InputDecoration(
-                //       labelText: "Enter Url"
-                //   ),
-                //   validator: (value) => Validator.validateDateOfBirth(value),
-                // ),
-                // const SizedBox(
-                //   height: 40,
-                // ),
+                TextFormField(
+                  decoration: const InputDecoration(
+                      labelText: "Enter Password"
+                  ),
+                  validator: (value) => Validator.validatePassword(value),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
