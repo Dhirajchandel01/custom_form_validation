@@ -1,20 +1,20 @@
 name: "custom_form_validation"
 description: "Flutter custom validation"
-version: 0.0.1
+version: 0.0.3
 homepage: https://github.com/Dhirajchandel01/custom_form_validation.git
 repository: https://github.com/Dhirajchandel01/custom_form_validation.git
 issue_tracker: https://github.com/Dhirajchandel01/custom_form_validation/issues
 
 
 environment:
-  sdk: '>=3.2.6 <4.0.0'
+  sdk: '>=3.1.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_datetime_picker: ^1.5.1
-  intl:  
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:

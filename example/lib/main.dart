@@ -1,4 +1,4 @@
-import 'package:custom_form_validation/validation.dart';
+import 'package:custom_form_validation/custom_form_validation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
