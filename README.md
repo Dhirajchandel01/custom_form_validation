@@ -7,11 +7,22 @@ applications.
 
 ## Platform Support
 
-| **Android** |   | **iOs**     |  | **Web**     |
-|:-----------:|   |:-----------:|  |:-----------:|
-|   &#9989;   |   |   &#9989;   |  |   &#9989;   |
+| **Android** |  
+|:-----------:|
+|   &#9989;   | 
 </br></br>
 
+
+| **iOs** | 
+|:-------:| 
+| &#9989; | 
+</br></br>
+
+
+| **iOs** | 
+|:-------:| 
+| &#9989; | 
+</br></br>
 ## Installation
 
 To use `custom_form_validation` in your Flutter project, follow these steps:
