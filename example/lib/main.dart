@@ -132,6 +132,41 @@ class _MyFormState extends State<MyForm> {
                 const SizedBox(
                   height: 40,
                 ),
+
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Whats app Mobile Number'),
+                  validator:
+                      (value) {
+                    return Validator.validateMultiple(value, [
+                      Validator.validateMobile, // Checks 10-digit number starting with 6, 7, 8, or 9
+                          (val) => val != null && (val.startsWith('6') || val.startsWith('7') || val.startsWith('8') || val.startsWith('9'))
+                          ? null
+                          : 'Mobile number must start with 6, 7, 8, or 9',
+
+                      // Explicit length check
+                          (val) => val?.length == 10 ? null : 'Mobile number must be exactly 10 digits',
+
+                      // Only digits allowed
+                          (val) => val != null && RegExp(r'^[0-9]+$').hasMatch(val)
+                          ? null
+                          : 'Mobile number must contain only digits',
+
+                      // Not all same digits
+                          (val) => val != null && val.split('').toSet().length > 1
+                          ? null
+                          : 'Mobile number cannot have all same digits',
+
+                      // No excessive repetition
+                          (val) => val != null && !RegExp(r'(\d)\1{4,}').hasMatch(val)
+                          ? null
+                          : 'Mobile number cannot have 5 or more repeating digits',
+                         (val) => val?.length == 10 ? null : 'Mobile number must be exactly 10 digits', // Explicit 10-digit check
+                    ]);
+                  },
+                  keyboardType: TextInputType.phone,
+                  maxLength: 10,
+                ),
+                const SizedBox(),
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {

@@ -330,7 +330,7 @@ class Validator {
   }
 
 
-  //todo -added in main validatio  - 19-11-2024
+  //todo -added in main validation - 19-11-2024 - Pranjali M.
 
   static String? validateUserNameDetails(String? value) {
     if (value == null || value.trim().isEmpty) {
@@ -452,6 +452,214 @@ class Validator {
     return null;
   }
 
+/// - 09-04-2025 add New Validation and multiValidation using array - Pranjali M.
+
+  // OTP validation (4-6 digits)
+  static String? validateOTP(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'OTP is required';
+    }
+    if (!RegExp(r'^\d{4,6}$').hasMatch(value)) {
+      return 'OTP must be a 4 to 6-digit number';
+    }
+    return null;
+  }
+
+// Age validation (based on DateTime)
+  static String? validateAge(DateTime? dob, {int minAge = 18, int maxAge = 100}) {
+    if (dob == null) {
+      return 'Date of birth is required';
+    }
+    final now = DateTime.now();
+    int age = now.year - dob.year;
+    if (now.month < dob.month || (now.month == dob.month && now.day < dob.day)) {
+      age--;
+    }
+    if (age < minAge) {
+      return 'Age must be at least $minAge years';
+    }
+    if (age > maxAge) {
+      return 'Age must not exceed $maxAge years';
+    }
+    return null;
+  }
+
+  // File size validation (in MB)
+  static String? validateFileSize(int? sizeInBytes, {double maxSizeMB = 10}) {
+    if (sizeInBytes == null) {
+      return 'File size is required';
+    }
+    final sizeInMB = sizeInBytes / (1024 * 1024);
+    if (sizeInMB > maxSizeMB) {
+      return 'File size must not exceed $maxSizeMB MB';
+    }
+    return null;
+  }
+
+  // IP Address validation (IPv4)
+  static String? validateIPAddress(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'IP address is required';
+    }
+    if (!RegExp(r'^(\d{1,3}\.){3}\d{1,3}$').hasMatch(value)) {
+      return 'Invalid IP address format';
+    }
+    final parts = value.split('.');
+    for (var part in parts) {
+      if (int.parse(part) > 255 || part.startsWith('0') && part.length > 1) {
+        return 'Each segment must be between 0 and 255';
+      }
+    }
+    return null;
+  }
+
+  // GSTIN validation (Indian GST number: 15 characters)
+  static String? validateGSTIN(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'GSTIN is required';
+    }
+    if (!RegExp(r'^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$')
+        .hasMatch(value)) {
+      return ' Invalid GSTIN format ';//Invalid GSTIN format (e.g., 27AABCU9603R1ZT)';
+    }
+    return null;
+  }
+
+  // Percentage validation (0-100)
+  static String? validatePercentage(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Percentage is required';
+    }
+    final number = double.tryParse(value);
+    if (number == null || number < 0 || number > 100) {
+      return 'Percentage must be between 0 and 100';
+    }
+    return null;
+  }
+
+  // Time validation (HH:MM format, 24-hour)
+  static String? validateTime(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Time is required';
+    }
+    if (!RegExp(r'^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$').hasMatch(value)) {
+      return 'Invalid time format (e.g., 14:30)';
+    }
+    return null;
+  }
+
+  // Currency amount validation (positive number with up to 2 decimals)
+  static String? validateCurrency(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Amount is required';
+    }
+    if (!RegExp(r'^\d+(\.\d{1,2})?$').hasMatch(value)) {
+      return 'Invalid amount format (e.g., 123.45)';
+    }
+    return null;
+  }
+
+  // Hex color code validation
+  static String? validateHexColor(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Color code is required';
+    }
+    if (!RegExp(r'^#[0-9A-Fa-f]{6}$').hasMatch(value)) {
+      return 'Invalid hex color code (e.g., #FF5733)';
+    }
+    return null;
+  }
+
+  // Latitude validation (-90 to 90)
+  static String? validateLatitude(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Latitude is required';
+    }
+    final lat = double.tryParse(value);
+    if (lat == null || lat < -90 || lat > 90) {
+      return 'Latitude must be between -90 and 90';
+    }
+    return null;
+  }
+
+  // Longitude validation (-180 to 180)
+  static String? validateLongitude(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Longitude is required';
+    }
+    final lon = double.tryParse(value);
+    if (lon == null || lon < -180 || lon > 180) {
+      return 'Longitude must be between -180 and 180';
+    }
+    return null;
+  }
+
+  // ISBN validation (10 or 13 digits)
+  static String? validateISBN(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'ISBN is required';
+    }
+    if (!RegExp(r'^(?:\d{9}[\dX]|\d{13})$').hasMatch(value)) {
+      return 'Invalid ISBN (10 or 13 digits)';
+    }
+    return null;
+  }
+
+  // MAC Address validation
+  static String? validateMACAddress(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'MAC address is required';
+    }
+    if (!RegExp(r'^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$').hasMatch(value)) {
+      return 'Invalid MAC address (e.g., 00:14:22:01:23:45)';
+    }
+    return null;
+  }
+
+  // Quantity validation (positive integer)
+  static String? validateQuantity(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Quantity is required';
+    }
+    final qty = int.tryParse(value);
+    if (qty == null || qty <= 0) {
+      return 'Quantity must be a positive integer';
+    }
+    return null;
+  }
+
+  // Coupon code validation (alphanumeric, 6-12 characters)
+  static String? validateCouponCode(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Coupon code is required';
+    }
+    if (!RegExp(r'^[A-Za-z0-9]{6,12}$').hasMatch(value)) {
+      return 'Coupon code must be 6-12 alphanumeric characters';
+    }
+    return null;
+  }
+
+
+
+  // Generic method to process multiple validations from a single array
+  static String? validateMultiple(String? value, List<String? Function(String?)> validators) {
+    for (var validator in validators) {
+      final result = validator(value);
+      if (result != null) return result;
+    }
+    return null;
+  }
+
+
+  // New method to process multiple arrays of validations & access validateWithMultipleArrays -extension
+  static String? validateMultipleArrays(String? value, List<List<String? Function(String?)>> validatorArrays) {
+    for (var validators in validatorArrays) {
+      final result = validateMultiple(value, validators);
+      if (result != null) return result;
+    }
+    return null;
+  }
+
 }
 
 extension PanCardValidator on String {
@@ -460,4 +668,21 @@ extension PanCardValidator on String {
   }
 }
 
+// Extension for String to handle validations
+extension StringValidator on String? {
+  // Validate with a single validation function
+  bool isValidWith(String? Function(String?) validator) {
+    return validator(this) == null;
+  }
 
+  // Validate with a single array of validation functions
+  String? validateWithMultiple(List<String? Function(String?)> validators) {
+    return Validator.validateMultiple(this, validators);
+  }
+
+  // Validate with multiple arrays of validation functions
+  String? validateWithMultipleArrays(List<List<String? Function(String?)>> validatorArrays) {
+    return Validator.validateMultipleArrays(this, validatorArrays);
+  }
+
+}
